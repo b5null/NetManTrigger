@@ -4,6 +4,9 @@
 #include <comdef.h>
 #include <netcon.h>
 
+const CLSID CLSID_ConnectionManager = {0xBA126AD1, 0x2166, 0x11D1, {0xB1, 0xD0, 0x00, 0x80, 0x5F, 0xC1, 0x27, 0x0E}};
+const IID IID_INetConnectionManager = {0xC08956A2, 0x1CD3, 0x11D1, {0xB1, 0xC5, 0x00, 0x80, 0x5F, 0xC1, 0x27, 0x0E}};
+
 int main()
 {
     HRESULT hResult;
@@ -17,7 +20,7 @@ int main()
     if (SUCCEEDED(hResult))
     {
         INetConnectionManager* pConnectionManager = 0;
-        hResult = CoCreateInstance(CLSID_ConnectionManager, 0, CLSCTX_ALL, __uuidof(INetConnectionManager), (void**)&pConnectionManager);
+        hResult = CoCreateInstance(CLSID_ConnectionManager, 0, CLSCTX_ALL, IID_INetConnectionManager, (void**)&pConnectionManager);
         if (SUCCEEDED(hResult))
         {
             IEnumNetConnection* pEnumConnection = 0;
@@ -51,7 +54,7 @@ int main()
     }
     else
         wprintf(L"[-] CoInitializeEx() failed. Error code = 0x%08X (%ls)\n", hResult, _com_error(hResult).ErrorMessage());
-    
+
     FreeLibrary(hModule);
     wprintf(L"Done\n");
 }
