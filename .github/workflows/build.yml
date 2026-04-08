@@ -17,6 +17,7 @@ jobs:
         shell: msys2 {0}
         run: |
           g++ NetManTrigger.cpp -o NetManTrigger.exe \
+            -DUNICODE -D_UNICODE \
             -lole32 -loleaut32 -luuid \
             -static-libgcc -static-libstdc++ \
             -s
