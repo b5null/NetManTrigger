@@ -9,7 +9,7 @@ int main()
     HRESULT hResult;
 
     typedef void(__stdcall* LPNcFreeNetconProperties)(NETCON_PROPERTIES* pProps);
-    HMODULE hModule = LoadLibrary(L"netshell.dll");
+    HMODULE hModule = LoadLibraryA("netshell.dll");
     if (hModule == NULL) { return 1; }
     LPNcFreeNetconProperties NcFreeNetconProperties = (LPNcFreeNetconProperties)GetProcAddress(hModule, "NcFreeNetconProperties");
 
